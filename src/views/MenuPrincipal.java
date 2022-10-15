@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JFrame {
 
@@ -43,7 +44,7 @@ public class MenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuPrincipal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("/imagenes/aH-40px.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("/imagenes/logo.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 910, 537);
 		contentPane = new JPanel();
@@ -63,12 +64,12 @@ public class MenuPrincipal extends JFrame {
 		
 		JLabel imagenFondo = new JLabel("");
 		imagenFondo.setBounds(-50, 0, 732, 501);
-		imagenFondo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/imagenes/menu-img.png")));
+		imagenFondo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/imagenes/menu.jpg")));
 		panel.add(imagenFondo);
 		
 		JLabel logo = new JLabel("");
 		logo.setBounds(722, 80, 150, 156);
-		logo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/imagenes/aH-150px.png")));
+		logo.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/imagenes/logo.png")));
 		panel.add(logo);
 		
 		JPanel panel_1 = new JPanel();
