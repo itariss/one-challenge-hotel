@@ -9,6 +9,5 @@ public class TestaConexao {
 
         Connection connection = connectionFactory.conexaoPadrao();
 
-        System.out.println("funfou");
     }
 }

@@ -1,24 +1,20 @@
 package views;
 
-import java.awt.EventQueue;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseMotionAdapter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
 @SuppressWarnings("serial")
@@ -51,7 +47,7 @@ public class MenuUsuario extends JFrame {
 	public MenuUsuario() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuUsuario.class.getResource("/imagenes/aH-40px.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 944, 609);
+		setBounds(100, 100, 944, 629);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,7 +73,7 @@ public class MenuUsuario extends JFrame {
 		
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBackground(new Color(12, 138, 199));
-		panelMenu.setBounds(0, 0, 257, 609);
+		panelMenu.setBounds(0, 0, 257, 629);
 		contentPane.add(panelMenu);
 		panelMenu.setLayout(null);
 		
@@ -148,6 +144,36 @@ public class MenuUsuario extends JFrame {
 		labelRegistro.setFont(new Font("Roboto", Font.PLAIN, 18));
 		labelRegistro.setHorizontalAlignment(SwingConstants.LEFT);
 		btnRegistro.add(labelRegistro);
+
+		JPanel btnAdicionarUsuario = new JPanel();
+
+		btnAdicionarUsuario.setBounds(0, 365, 257, 56);
+		btnAdicionarUsuario.setBackground(new Color(12, 138, 199));
+		panelMenu.add(btnAdicionarUsuario);
+		btnAdicionarUsuario.setLayout(null);
+		btnAdicionarUsuario.setCursor(new java.awt.Cursor(Cursor.HAND_CURSOR));
+
+		JLabel labelAdicionarUsuario = new JLabel("Cadastrar Usuário");
+		labelAdicionarUsuario.setIcon(new ImageIcon(MenuUsuario.class.getResource("/imagenes/add-users.png")));
+		labelAdicionarUsuario.setForeground(SystemColor.text);
+		labelAdicionarUsuario.setBounds(30, 11, 205, 34);
+		labelAdicionarUsuario.setFont(new Font("Roboto", Font.PLAIN, 18));
+		labelAdicionarUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		btnAdicionarUsuario.add(labelAdicionarUsuario);
+
+		btnAdicionarUsuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnAdicionarUsuario.setBackground(new Color(118, 187, 223));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnAdicionarUsuario.setBackground(new Color(12, 138, 199));
+			}
+		});
+
+
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(26, 219, 201, 2);
@@ -239,7 +265,15 @@ public class MenuUsuario extends JFrame {
 	    labelDescricao_4.setFont(new Font("Roboto", Font.PLAIN, 17));
 	    labelDescricao_4.setBounds(312, 520, 295, 27);
 	    contentPane.add(labelDescricao_4);
+
+		JLabel labelDescricao_5 = new JLabel("- Cadastrar ou deletar usuários");
+		labelDescricao_5.setFont(new Font("Roboto", Font.PLAIN, 17));
+		labelDescricao_5.setBounds(312, 558, 295, 27);
+		contentPane.add(labelDescricao_5);
+
+
 	}
+
 	
 	//Código que permite movimentar a janela pela tela seguindo a posição de "x" e "y"
 	private void headerMousePressed(java.awt.event.MouseEvent evt) {

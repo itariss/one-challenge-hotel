@@ -1,5 +1,9 @@
 package views;
 
+import factory.ConnectionFactory;
+import jdbc.dao.UsuarioDAO;
+import jdbc.models.Usuario;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +21,9 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 public class Login extends JFrame {
 
@@ -192,7 +199,11 @@ public class Login extends JFrame {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Login();
+				try {
+					Login();
+				} catch (SQLException ex) {
+					throw new RuntimeException(ex);
+				}
 			}
 		});
 		btnLogin.setBackground(SystemColor.textHighlight);
@@ -234,19 +245,23 @@ public class Login extends JFrame {
 		header.setLayout(null);
 	}
 	
-	private void Login() {
-		 String Usuario= "admin";
-	     String Senha="admin";
+	private void Login() throws SQLException {
 
-	        String senhaa=new String (txtSenha.getPassword());
+		ConnectionFactory connectionFactory = new ConnectionFactory();
 
-	        if(txtUsuario.getText().equals(Usuario) && senhaa.equals(Senha)){
-	            MenuUsuario menu = new MenuUsuario();
-	            menu.setVisible(true);
-	            dispose();	 
-	        }else {
-	            JOptionPane.showMessageDialog(this, "Usuario ou Senha não válidos");
-	        }
+		Connection connection = connectionFactory.conexaoPadrao();
+
+		Usuario usuario = new Usuario(txtUsuario.getText(), txtSenha.getPassword());
+
+		UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
+
+		if(usuarioDAO.autentica(usuario)){
+			MenuUsuario menu = new MenuUsuario();
+			menu.setVisible(true);
+			dispose();
+		}else {
+			JOptionPane.showMessageDialog(this, "Usuario ou Senha não válidos");
+		}
 	} 
 	
 	//Código que permite movimentar a janela pela tela seguindo a posição de "x" e "y"
