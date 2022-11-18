@@ -200,7 +200,7 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Login();
+					login();
 				} catch (SQLException ex) {
 					throw new RuntimeException(ex);
 				}
@@ -245,7 +245,7 @@ public class Login extends JFrame {
 		header.setLayout(null);
 	}
 	
-	private void Login() throws SQLException {
+	private void login() throws SQLException {
 
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 

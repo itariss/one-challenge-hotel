@@ -1,6 +1,9 @@
 package jdbc.dao;
 
-import java.sql.Connection;
+import com.mysql.cj.result.SqlDateValueFactory;
+import jdbc.models.Reserva;
+
+import java.sql.*;
 
 public class ReservaDAO {
 
@@ -10,5 +13,27 @@ public class ReservaDAO {
         this.connection = connection;
     }
 
-    public void registraReserva() {}
+
+    public void salvar(Reserva reserva) {
+        String sql = "INSERT INTO RESERVA (dataEntrada, dataSaida, valor, formaPagamento) VALUES (?, ?, ?, ?)";
+
+        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstm.setDate(1, new Date(reserva.getDataEntrada().getTime()));
+            pstm.setDate(2, new Date(reserva.getDataSaida().getTime()));
+            pstm.setFloat(3,reserva.getValor());
+            pstm.setString(4, reserva.getFormaPagamento());
+
+            pstm.executeUpdate();
+
+            try (ResultSet rst = pstm.getGeneratedKeys()) {
+                while (rst.next()) {
+                    reserva.setId(rst.getInt(1));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

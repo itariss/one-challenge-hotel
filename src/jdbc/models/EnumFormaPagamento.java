@@ -1,7 +1,8 @@
 package jdbc.models;
 
 public enum EnumFormaPagamento {
-    PIX,
-    CARTAO,
+    CARTAO_DE_CREDITO,
+    CARTAO_DE_DEBITO,
     DINHEIRO;
+
 }
