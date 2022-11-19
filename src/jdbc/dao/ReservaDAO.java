@@ -15,7 +15,8 @@ public class ReservaDAO {
 
 
     public void salvar(Reserva reserva) {
-        String sql = "INSERT INTO RESERVA (dataEntrada, dataSaida, valor, formaPagamento) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO RESERVAS (dataEntrada, dataSaida, valor, formaPagamento) VALUES (?, ?, ?, ?)";
+        System.out.println(reserva.getFormaPagamento());
 
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstm.setDate(1, new Date(reserva.getDataEntrada().getTime()));

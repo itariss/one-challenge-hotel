@@ -44,8 +44,19 @@ public class Reserva {
     }
 
     public String getFormaPagamento() {
-        return formaPagamento.toString();
+        if(formaPagamento.ordinal() == 0) {
+
+        return "Cartão de crédito";
+        }
+        if (formaPagamento.ordinal() == 1) {
+            return "Cartão de débito";
+        }
+
+        return "Dinheiro";
+
     }
+
+
 
     public void setId(Integer id) {
         this.id = id;

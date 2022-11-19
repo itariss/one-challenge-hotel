@@ -317,7 +317,10 @@ public class ReservasView extends JFrame {
 					Date dataEntrada = txtDataE.getDate();
 					Date dataSaida = txtDataS.getDate();
 					float valor = Float.parseFloat(txtValor.getText().replaceAll("[^\\d.]", ""));
-					String formaPagamento = Normalizer.normalize(txtFormaPagamento.getSelectedItem().toString(), Normalizer.Form.NFKD).replaceAll("\\p{M}", "");
+					String formaPagamento = Normalizer.normalize(
+                            txtFormaPagamento.getSelectedItem().toString(),
+                            Normalizer.Form.NFKD)
+                            .replaceAll("\\p{M}", "");
 					try {
 						criaReserva(dataEntrada, dataSaida, valor, formaPagamento);
 					} catch (SQLException ex) {
@@ -353,6 +356,7 @@ public class ReservasView extends JFrame {
     private void criaReserva(Date dataEntrada, Date dataSaida, float valor, String formaPagamento) throws  SQLException{
 		Reserva reserva = new Reserva(dataEntrada, dataSaida, valor, formaPagamento);
 		ReservaController reservaController = new ReservaController();
+		reservaController.salvar(reserva);
 		System.out.println(reserva);
 	}
 

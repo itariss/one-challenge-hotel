@@ -11,8 +11,6 @@ import java.util.Date;
 
 public class ReservaController {
 
-
-
     private ReservaDAO reservaDAO;
 
     public ReservaController() throws SQLException {
@@ -23,6 +21,8 @@ public class ReservaController {
     public void salvar(Reserva reserva) {
         this.reservaDAO.salvar(reserva);
     }
+
+
 
     public float calculaValorReserva(Date dataEntrada, Date dataSaida) {
         if(dataSaida != null && dataEntrada != null) {
